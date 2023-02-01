@@ -28,7 +28,7 @@ twitter_username: waiting4agi
 github_username:  marcinnis
 
 # Build settings
-theme: hacker
+theme: Hacker
 #remote-theme: dark-poole
 plugins:
   - jekyll-feed
