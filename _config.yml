@@ -29,10 +29,12 @@ github_username:  marcinnis
 
 # Build settings
 #theme: Hacker
-theme: Architect
+#theme: Architect
+remote_theme: pages-themes/hacker@v0.2.0
 #remote-theme: dark-poole
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
