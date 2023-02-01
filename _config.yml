@@ -32,14 +32,15 @@ github_username:  marcinnis
 #theme: Architect
 #theme: minima
 #remote_theme: pages-themes/hacker@v0.2.0
-remote_theme: pages-themes/midnight@v0.2.0
+#remote_theme: pages-themes/midnight@v0.2.0
 #remote_theme: pages-themes/midnight@v0.2.0
 #remote-theme: dark-poole
 #remote_theme: chesterhow/tale
+remote_theme: "dracula/gh-pages"
 
 plugins:
-  - jekyll-paginate
-  - jekyll-feed
+#  - jekyll-paginate
+#  - jekyll-feed
   - jekyll-remote-theme
 # Exclude from processing.
 # The following items will not be processed, by default.
