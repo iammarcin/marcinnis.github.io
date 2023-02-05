@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "UFC Bot PoC. Step 2. Pinecone + Langchain + GPT3."
+title:  "UFC Bot PoC. Step 2. Technical side. Pinecone + Langchain + GPT3."
 date:   2023-02-05 16:37:50 +0100
 categories: pinecone langchain gpt3 llm
 ---
@@ -85,6 +85,7 @@ for doc in docs:
   # function to get DB content
   dbData=getContentFromDB(dbId)
   dbDataFinal = dbData['Message']['data'][0]['text']
+  # tabular data - is alternative method of extracting tables from wiki (python list)
   dbDataTabularPerId = dbData['Message']['data'][0]['textTabular']
   # if tabular data exists in db - use it
   if dbDataTabularPerId != '':
@@ -219,20 +220,8 @@ This uses each first chunk to generate the output and then all others are added 
   result = chain({"input_documents": finalDocs, "question": query}, return_only_outputs=False)
 {% endhighlight %}
 
-## Results
-
-..
-
-
 ## Summary
 
-Creating UFC chatbot, answering most common questions is definitely possible. There are - as always - some challenges, like inconsistency in answer by different methods we tried, problems with similarity search results etc. But nothing that cannot be done with some tricks and proper prompt engineering.
+In fact this few steps should be enough to build any QA bot. You just need to provide it with proper data. It's amazing how easy it is these days.
 
-Problems start when questions become less common and more specific. Then, depending on the question, it might become quite difficult to get proper answer.
-
-On top of that - it is still quite expensive exercise. Embeddings got cheaper for sure, but if you want to use whole wikipedia + other resources it sums up into quite a sum. And that's only start - as later each query (with all tricks needed) will generate costs too.
-So you have to look close on your budget and be sure that your product can sustain it for your users.
-
-Anyhow - this was very fun experiment. We learnt a lot about LLMs and Langchain and this was in fact main goal! In addition going deeper and understanding better possibilities - open our eyes what else can be done!
-
-And this might be best RoI from this weekend. Lots of ideas!
+LLMs can significantly reduce complexity of your code, but with the addition of all those supportive tools, the ease of use is taken to another level. So excited about this technology!
