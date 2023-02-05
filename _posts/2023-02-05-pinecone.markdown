@@ -19,6 +19,10 @@ Plan was to use:
 - **MySQL** to store the data (this is optional and data can be stored in Pinecone too)
 - **Langchain** to orchestrate communication between all above
 
+Quick diagram
+
+![Expression]({{ "/assets/images/Post2.TechStack.png" | relative_url }})
+
 We used Langchain's CombineDocuments chains. There are 4 types of them, explained [HERE](https://langchain.readthedocs.io/en/latest/modules/chains/combine_docs.html){:target="_blank"}{:rel="noopener noreferrer"} and we tested all of them.
 
 ## Getting data
@@ -37,10 +41,6 @@ Example metadata:
   "tokens": 188
 }
 ```
-
-Quick diagram
-
-![Expression]({{ "/assets/images/Post2.TechStack.png" | relative_url }})
 
 ## Code
 
@@ -122,7 +122,7 @@ This method requires more queries to LLM as first individual chunks are used as 
 
 {% highlight python %}
   # query for individual chunks
-  question_prompt_template = """Use the following portion of a long document to see if any of the text is relevant to answer the question. 
+  question_prompt_template = """Use the following portion of a long document to see if any of the text is relevant to answer the question.
   {context}
   Question: {question}
   Relevant text, if any:"""
