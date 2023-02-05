@@ -46,7 +46,7 @@ Quick diagram
 
 First some code for documentation purposes.
 
-#### Common part
+### Common part
 
 This is common part for all chains type. Here we:
 - initialize Pinecone/OpenAI services,
@@ -100,7 +100,7 @@ for doc in docs:
 
 Having that - we can go to next step. Using Langchain's CombineDocuments chains get the best possible answer for user's question. Here is code for each of the method (using custom prompts).
 
-#### Stuffing
+### Stuffing
 
 This method is simply putting together all extracted documents as context for LLM.
 
@@ -116,7 +116,7 @@ This method is simply putting together all extracted documents as context for LL
   result = chain.run(input_documents=finalDocs, query=query)
 {% endhighlight %}
 
-#### Map reduce
+### Map reduce
 
 This method requires more queries to LLM as first individual chunks are used as context and then everything is combined together.
 
@@ -146,7 +146,7 @@ This method requires more queries to LLM as first individual chunks are used as 
   result = chain({"input_documents": finalDocs, "question": query}, return_only_outputs=False)
 {% endhighlight %}
 
-#### Map-rerank
+### Map-rerank
 
 Similar to map reduce - but gives a score for each chunks of context - and highest score is considered as best answer.
 
@@ -184,7 +184,7 @@ Similar to map reduce - but gives a score for each chunks of context - and highe
   result = chain({"input_documents": finalDocs, "question": query}, return_only_outputs=False)
 {% endhighlight %}
 
-#### Refine
+### Refine
 
 This uses each first chunk to generate the output and then all others are added in separate steps to refine generated answer. This obviously cannot be parallelized. For our UFC bot it was giving worst results from very beginning, so we quickly dropped it.
 
