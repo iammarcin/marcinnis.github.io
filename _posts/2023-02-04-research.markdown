@@ -2,7 +2,6 @@
 layout: post
 title:  "UFC Bot PoC. Step 1. Research. Wiki and Google search."
 date:   2023-02-04 17:37:50 +0100
-categories: llm gpt3 langchain
 ---
 
 For a few weeks I've been playing quite hard with LLMs, so I finally decided to focus on specific project.
