@@ -1,0 +1,117 @@
+---
+layout: post
+title:  "UFC Bot PoC. Step 3. Final tests."
+date:   2023-02-16 16:37:50 +0100
+categories: pinecone langchain gpt3 llm
+---
+
+
+## Results
+
+Results were really mixed. In general most of answers to generic questions were really good.
+
+And now time for tests - also including comparison to Google Wrapper, which had pretty good results in[initial tests](https://marcinnis.github.io/llm/gpt3/langchain/2023/02/04/research.html){:target="_blank"}{:rel="noopener noreferrer"} .
+
+
+
+Let's make it little bit more complex - 2 questions at once.
+query=question="Who was a contract winner in Week 1 of Dana White's Contender Series Season 6? "
+
+CombineDocs (all had similar results)
+ Yusaku Kinoshita, Sedriques Dumas, Mateusz Rębecki, Victoria Dudakova and Blake Bilder.
+
+Good answer to 1st part of question.
+
+Google 
+The contract winners of Dana White's Contender Series Season 6 Week 6 were Blake Bilder, Viktoriia Dudakova, Mateusz Gamrot, Morgan Little and Yusaku Kinoshita. The results of their fights were Blake Bilder defeated Ozzy Diaz via unanimous decision, Viktoriia Dudakova defeated Hailey Cowan via unanimous decision, Mateusz Gamrot defeated Daniel Marcos via unanimous decision, Morgan Little defeated Francis Hernandez via unanimous decision and Yusaku Kinoshita defeated Joe Pyfer via unanimous decision.
+
+Google hallucinated quite a bit, but at least tried to answer 2nd part of question.
+
+
+When was UFC 1? And who won the main event?
+
+STUFF
+ UFC 1 was co-created by Rorion Gracie and the Torrance-based UFC promoter Art Davie, who decided to take locally famous Gracie Garage Challenge fights versus California's martial artists to a new level, televised nationally, with the opponents picked internationally. It was held at the McNichols Sports Arena in Denver, Colorado, United States, on November 12, 1993. The main event was won by Royce Gracie, who defeated Gerard Gordeau by submission (rear naked choke) in 1:44.
+
+MAP_REDUCE
+UFC 1 was held on November 12, 1993. The winner of the main event is Royce Gracie, who won by submission (rear naked choke) in 1:44.
+
+RERANK
+UFC 1 was held on November 12, 1993. Royce Gracie won the main event.'
+
+GOOGLE
+UFC 1 was held on November 12, 1993 at the McNichols Sports Arena in Denver, Colorado. The main event was won by Royce Gracie.
+
+All were very good answers, but with different amount of data as response.
+
+
+
+rerank - good but not good for this use case
+because there are many pieces of information ...
+and all can be equally scored as 100 and will be right!
+
+ 'question': 'Who hold the record of most submissions in UFC across all fighters?', 'intermediate_steps': [{'answer': 'Khabib Nurmagomedov holds the record of most submissions in UFC across all fighters.', 'score': '100'}, {'answer': 'Khabib Nurmagomedov holds the record of most submissions in UFC across all fighters with 3 submissions.', 'score': '100'}, {'answer': 'Jon Jones holds the record of most submissions in UFC across all fighters with 3 submissions.', 'score': '100'}, {'answer': 'Charles Oliveira holds the record of most submissions in UFC across all fighters with 16 submissions.', 'score': '100'}, {'answer': 'Charles Oliveira holds the record of most submissions in UFC across all fighters with 10 submissions.', 'score': '100'}], 'output_text': 'Khabib Nurmagomedov holds the record of most submissions in UFC across all fighters.'}
+
+query = "Who is current UFC Light Heavyweight champion?"
+METHOD="map_rerank" - best, rest was giving bad answers evn though good context was provided
+
+for questions about records - #METHOD="map_reduce" the best
+
+
+google vs mine
+question = "Tell me all you know about Jamahal Hill's family?"
+Google
+Jamahal Hill is a married man, and he has a daughter named Malaya who is 16 years old
+my solution:
+great  - copy from wiki
+
+
+What is UFC record for latest knockouts?
+G
+M
+What is UFC record for latest knockouts in title fight?
+G
+M
+What is UFC record for latest knockouts in title bout?
+G
+M
+
+
+Question: Who has most finishes in title fights in UFC history
+Similarity search - 3rd one 
+Use the following portion of a long document to see if any of the text is relevant to answer the question.
+  List of UFC records Most finishes_1. List of UFC records Most finishes
+[['', 'Event', 'Date', 'Venue', 'City', 'Fights', 'Finishes', 'Finish Percentage'], ['1', 'UFC Fight Night 55', 'November 8, 2014', 'Allphones Arena', 'Sydney, Australia', '11', '11', '100%'], ['1', 'UFC Vegas 59', 'August 6, 2022', 'UFC Apex', 'Enterprise, Nevada, U.S.', '10', '10', '100%']]
+
+List of UFC records Most finishes. List of UFC records Most finishes
+[['', 'Event', 'Date', 'Venue', 'City', 'Finishes'], ['1', 'UFC Fight Night 55', 'November 8, 2014', 'Allphones Arena', 'Sydney, Australia', '11'], ['1', 'UFC 224', 'May 12, 2018', 'Jeunesse Arena', 'Rio de Janeiro, Brazil', '11'], ['1', 'UFC 281', 'November 12, 2022', 'Madison Square Garden', 'New York City, New York', '11']]
+
+List of UFC records Most finishes - All fighters_1. List of UFC records Most finishes - All fighters
+[['In title bouts'], ['', 'Fighter', 'Division', 'Finishes'], ['1', ' Anderson Silva', 'MW', '9'], ['2', ' Matt Hughes', 'WW', '8'], ['3', ' Demetrious Johnson', 'FLW', '7'], ['4', ' Ronda Rousey', 'W-BW', '6'], ['4', ' Jon Jones', 'LHW', '6'], ['4', ' Amanda Nunes', 'W-BW \\ W-FW', '6'], ['7', ' Georges St-Pierre', 'WW \\ MW', '5'], ['7', ' Frank Shamrock', 'LHW', '5'], ['7', ' Randy Couture', 'LHW \\ HW', '5'], ['7', ' B.J. Penn', 'LW \\ WW', '5'], ['7', ' Chuck Liddell', 'LHW', '5']]
+  Question: Who has most finishes in title fights in UFC history?
+
+
+  Interesting
+  Question: Who has most finishes in title fights in UFC Light HeavyWeight division?\n  Relevant text, if any:"]
+   ['2', ' Matt Hughes', 'WW', '8'], ['3', ' Demetrious Johnson', 'FLW', '7'], ['4', ' Jon Jones', 'LHW', '6'].
+
+Yes, the text is relevant to answer the question. The text shows that Jon Jones has the most finishes in title fights in the UFC Light HeavyWeight division with 6 finishes.
+
+i took portion from 
+  List of UFC records Most finishes - All fighters_1. List of UFC records Most finishes - All fighters
+[['In title bouts'], ['', 'Fighter', 'Division', 'Finishes'], ['1', ' Anderson Silva', 'MW', '9'], ['2', ' Matt Hughes', 'WW', '8'], ['3', ' Demetrious Johnson', 'FLW', '7'], ['4', ' Ronda Rousey', 'W-BW', '6'], ['4', ' Jon Jones', 'LHW', '6'], ['4', ' Amanda Nunes', 'W-BW \\ W-FW', '6'], ['7', ' Georges St-Pierre', 'WW \\ MW', '5'], ['7', ' Frank Shamrock', 'LHW', '5'], ['7', ' Randy Couture', 'LHW \\ HW', '5'], ['7', ' B.J. Penn', 'LW \\ WW', '5'], ['7', ' Chuck Liddell', 'LHW', '5']]
+even though there is record per division and understood what LHW is
+
+
+## Summary
+
+Creating UFC chatbot, answering most common questions is definitely possible. There are - as always - some challenges, like inconsistency in answer by different methods we tried, problems with similarity search results etc. But nothing that cannot be done with some tricks and proper prompt engineering.
+
+Problems start when questions become less common and more specific. Then, depending on the question, it might become quite difficult to get proper answer.
+
+On top of that - it is still quite expensive exercise. Embeddings got cheaper for sure, but if you want to use whole wikipedia + other resources it sums up into quite a sum. And that's only start - as later each query (with all tricks needed) will generate costs too.
+So you have to look close on your budget and be sure that your product can sustain it for your users.
+
+Anyhow - this was very fun experiment. We learnt a lot about LLMs and Langchain and this was in fact main goal! In addition going deeper and understanding better possibilities - open our eyes what else can be done!
+
+And this might be best RoI from this weekend. Lots of ideas!
