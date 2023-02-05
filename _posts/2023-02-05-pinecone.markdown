@@ -23,7 +23,7 @@ We used Langchain's CombineDocuments chains. There are 4 types of them, explaine
 
 ## Getting data
 
-As mentioned in previous post we decided to use data from Wikipedia. Here in big part we followed [OpenAI cookbook](https://github.com/openai/openai-cookbook/){:target="_blank"}{:rel="noopener noreferrer"} to download the data. We quickly realized that most interesting data is stored in tables, which are not extracted by Wikipedia python package :( So we needed to adjust the script accordingly.
+As mentioned in previous post we decided to use data from Wikipedia. Here in big part we followed [OpenAI cookbook](https://github.com/openai/openai-cookbook/){:target="_blank"}{:rel="noopener noreferrer"} to download the data. We quickly realized that most interesting data within UFC pages is stored in tables, which are totally ignored by Wikipedia python package :( So we needed to adjust the script accordingly.
 
 Finally we pulled data from Wikipedia, put it into MySQL. Then generated embeddings and stored them in  Pinecone, including database index id into metadata.
 
