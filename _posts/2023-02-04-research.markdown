@@ -14,11 +14,11 @@ So here go my rough notes from this specific process.
 
 ## Getting data
 
-As there is not really good API (statmuse doesn't support UFC, sportboard costs a lot) we decided to give it a try with Wikipedia as a source of data.
+As there is not really good UFC API (statmuse doesn't support UFC, sportboard is expensive) we decided to give it a try with Wikipedia as a source of data.
 
-#### First try - Wikipedia
+#### First try - Wikipedia search
 
-Langchain has a few interesting functionalities that I wanted to test here. Quick lookup on their docs and we generated agent searching through online wiki pages:
+From very beginning our plan was to use Langchain, as it has a few interesting functionalities that are crafted for our use case. Quick lookup on their docs and we generated agent searching through online wiki pages:
 
 {% highlight python %}
 from langchain import OpenAI, Wikipedia
@@ -46,7 +46,7 @@ react.run(question)
 
 {% endhighlight %}
 
-We run it for few questions:
+We run it with few questions:
 
 **What was the result of main event of UFC 283?**
 
@@ -95,6 +95,7 @@ Example answers:
 
 **What was the result of main event of UFC 283?**
 
+Both had similar (good) answer:
 ```
 Jamahal Hill defeated Glover Teixeira by unanimous decision (50-44, 50-44, 50-44) to become the new UFC light heavyweight champion.
 ```
@@ -160,7 +161,7 @@ Again good answer!
 
 ## Summary
 
-From few tested methods definitely Google wrapper did the job best and in fact it was unexpected (for me) how good it was.
+From few tested methods definitely Google wrapper did the job best and in fact it was unexpected how good it was.
 
 However from very beginning I was thinking to use embeddings and semantic search for this use case, as it should suit it even better.
 More in upcoming post, where we will do ultimate comparison.
