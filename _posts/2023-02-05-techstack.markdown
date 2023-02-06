@@ -225,6 +225,8 @@ This uses each first chunk to generate the output and then all others are added 
 
 ## Summary
 
-In fact this few steps should be enough to build any QA bot. You just need to provide it with proper data. It's amazing how easy it is these days.
+In fact this few steps should be enough to build any QA bot. You just need to provide it with proper data.
+
+Even more, if you're not into coding - there are already no code solutions, where you only provide github link to fully automated process. It's amazing how easy it is these days.
 
 LLMs can significantly reduce complexity of your code, but with the addition of all those supportive tools, the ease of use is taken to another level. So excited about this technology!
