@@ -17,7 +17,7 @@ As there is not really good UFC API (statmuse doesn't support UFC, sportboard is
 
 #### First try - Wikipedia search
 
-From very beginning our plan was to use Langchain, as it has a few interesting functionalities that are crafted for our use case. Quick lookup on their docs and we generated agent searching through online wiki pages:
+From very beginning our plan was to use [Langchain](https://langchain.readthedocs.io/en/latest/index.html){:target="_blank"}{:rel="noopener noreferrer"}, as it has a few interesting functionalities that are crafted for our use case. Quick lookup on their docs and we generated agent searching through online wiki pages:
 
 {% highlight python %}
 from langchain import OpenAI, Wikipedia
@@ -56,6 +56,7 @@ We run it with few questions:
 Example answer (for first question):
 
 ```
+(..)
 Observation 3: UFC 283: Teixeira vs. Hill was a mixed martial arts event produced by the Ultimate Fighting Championship that took place on January 21, 2023, at the Jeunesse Arena in Rio de Janeiro, Brazil.
 Thought 4: The result of the main event was Glover Teixeira defeated Jamahal Hill via submission (guillotine choke) at 4:27 of round 1.
 Action 4: Finish[Glover Teixeira defeated Jamahal Hill via submission (guillotine choke) at 4:27 of round 1.]
@@ -131,11 +132,10 @@ That looked unexpectedly promising.
 
 #### Testing more
 
-It was time for more tricky questions.
+It was time for more tricky questions for Google wrapper.
 
 **How many records were set during UFC 282?**
 
-Google:
 ```
 Two records were set during UFC 282
 ```
@@ -148,7 +148,7 @@ Good! If you're into UFC, you know this was quite tricky question. Lets go to de
 Records set during UFC 282 include Raul Rosas Jr. becoming the youngest winner in UFC history with a first-round submission, a rare title-fight draw, an 18-year-old winner, a historic knockout, and Paddy “The Baddy” pushing his record to a perfect 4-0 at the UFC level.
 ```
 
-Here unfortunately it's a loss.
+Here it got right with half of the answer..
 
 **Which UFC event had Highest Pay-Per-View buys?**
 

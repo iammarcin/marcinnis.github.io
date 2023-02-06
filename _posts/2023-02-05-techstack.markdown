@@ -4,7 +4,7 @@ title:  "UFC Bot PoC. Step 2. Technical side. Pinecone + Langchain + GPT3."
 date:   2023-02-05 16:37:50 +0100
 ---
 
-In previous [post](https://marcinnis.github.io/llm/gpt3/langchain/2023/02/04/research.html){:target="_blank"}{:rel="noopener noreferrer"} I described first tests of our UFC Bot Proof-of-Concept.
+In previous [post](https://marcinnis.github.io/2023/02/04/research.html){:target="_blank"}{:rel="noopener noreferrer"} I described first tests of our UFC Bot Proof-of-Concept.
 
 As reminder goal was to see if it's possible to have Q/A bot being able to answer most of the questions about UFC.
 
