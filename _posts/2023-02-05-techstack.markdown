@@ -43,7 +43,7 @@ Quick diagram
 
 ## Code
 
-First some code for documentation purposes.
+First some code for documentation purposes. I do not add part with feeding Pinecone, because there are many good tutorials how to do it, for example [HERE](https://docs.pinecone.io/docs/openai){:target="_blank"}{:rel="noopener noreferrer"}
 
 ### Common part
 
