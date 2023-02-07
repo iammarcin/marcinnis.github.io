@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "UFC Bot PoC. Step 3. Final tests."
-date:   2023-02-16 16:37:50 +0100
+date:   2029-02-16 16:37:50 +0100
 categories: pinecone langchain gpt3 llm
 ---
 
@@ -22,7 +22,7 @@ CombineDocs (all had similar results)
 
 Good answer to 1st part of question.
 
-Google 
+Google
 The contract winners of Dana White's Contender Series Season 6 Week 6 were Blake Bilder, Viktoriia Dudakova, Mateusz Gamrot, Morgan Little and Yusaku Kinoshita. The results of their fights were Blake Bilder defeated Ozzy Diaz via unanimous decision, Viktoriia Dudakova defeated Hailey Cowan via unanimous decision, Mateusz Gamrot defeated Daniel Marcos via unanimous decision, Morgan Little defeated Francis Hernandez via unanimous decision and Yusaku Kinoshita defeated Joe Pyfer via unanimous decision.
 
 Google hallucinated quite a bit, but at least tried to answer 2nd part of question.
@@ -78,7 +78,7 @@ M
 
 
 Question: Who has most finishes in title fights in UFC history
-Similarity search - 3rd one 
+Similarity search - 3rd one
 Use the following portion of a long document to see if any of the text is relevant to answer the question.
   List of UFC records Most finishes_1. List of UFC records Most finishes
 [['', 'Event', 'Date', 'Venue', 'City', 'Fights', 'Finishes', 'Finish Percentage'], ['1', 'UFC Fight Night 55', 'November 8, 2014', 'Allphones Arena', 'Sydney, Australia', '11', '11', '100%'], ['1', 'UFC Vegas 59', 'August 6, 2022', 'UFC Apex', 'Enterprise, Nevada, U.S.', '10', '10', '100%']]
@@ -97,7 +97,7 @@ List of UFC records Most finishes - All fighters_1. List of UFC records Most fin
 
 Yes, the text is relevant to answer the question. The text shows that Jon Jones has the most finishes in title fights in the UFC Light HeavyWeight division with 6 finishes.
 
-i took portion from 
+i took portion from
   List of UFC records Most finishes - All fighters_1. List of UFC records Most finishes - All fighters
 [['In title bouts'], ['', 'Fighter', 'Division', 'Finishes'], ['1', ' Anderson Silva', 'MW', '9'], ['2', ' Matt Hughes', 'WW', '8'], ['3', ' Demetrious Johnson', 'FLW', '7'], ['4', ' Ronda Rousey', 'W-BW', '6'], ['4', ' Jon Jones', 'LHW', '6'], ['4', ' Amanda Nunes', 'W-BW \\ W-FW', '6'], ['7', ' Georges St-Pierre', 'WW \\ MW', '5'], ['7', ' Frank Shamrock', 'LHW', '5'], ['7', ' Randy Couture', 'LHW \\ HW', '5'], ['7', ' B.J. Penn', 'LW \\ WW', '5'], ['7', ' Chuck Liddell', 'LHW', '5']]
 even though there is record per division and understood what LHW is
